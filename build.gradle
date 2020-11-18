@@ -1,0 +1,36 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+group 'com.example'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    testCompile "junit:junit:4.13.1"
+    testCompile "org.assertj:assertj-core:3.11.1"
+
+    testCompile gradleTestKit()
+}
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'example'
+            implementationClass = 'com.example.ExamplePlugin'
+        }
+    }
+}
