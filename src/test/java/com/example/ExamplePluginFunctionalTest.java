@@ -29,11 +29,12 @@ public class ExamplePluginFunctionalTest {
     public void test() throws IOException {
 
         writeFile(settingsFile, "rootProject.name = 'hello-world'");
-        writeFile(buildFile, "plugins { id 'com.example.example' }");
+        writeFile(buildFile, "plugins { id 'example' }");
 
         BuildResult result = GradleRunner.create()
                 .withProjectDir(testProjectDir.getRoot())
                 .withArguments("exampleTask")
+                .withPluginClasspath()
                 .build();
 
         assertThat(result.getOutput()).contains("Hello World!");
